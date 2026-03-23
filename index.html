@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Nova — Find Your Next Role</title>
+  <link rel="icon" sizes="180x180" href="/jn.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav id="mainNav">
+  <div class="nav-logo" onclick="navigate('home')">
+    <span><img id="logo" src="jn.png" alt="Jobnova Logo">
+    </span> Job Nova
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li id="nav-jobs">    <button onclick="navigate('jobs')">Jobs</button></li>
+    <li id="nav-profile"> <button onclick="navigate('profile')">Profile</button></li>
+    <li id="nav-about">   <button onclick="navigate('about')">About</button></li>
+    <li id="nav-contact"> <button onclick="navigate('contact')">Contact</button></li>
+    <li id="nav-devs">    <button onclick="navigate('devs')">Devs</button></li>
+    <li id="nav-auth">    <button class="nav-cta" onclick="navigate('login')">Login</button></li>
+  </ul>
+</nav>
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<!-- ============================================================
+     HOME PAGE
+     ============================================================ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🚀 10,000+ jobs listed</div>
+      <h1>Find your <em>dream role</em> with ease</h1>
+      <p>Connect with India's top employers. Browse verified listings, apply instantly, and land the career you deserve.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="navigate('jobs')">Browse Jobs →</button>
+        <button class="btn-outline" onclick="navigate('about')">How it works</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><h3>10K+</h3><p>Active jobs</p></div>
+        <div class="stat-item"><h3>3K+</h3><p>Top companies</p></div>
+        <div class="stat-item"><h3>98%</h3><p>Satisfaction rate</p></div>
+      </div>
+    </div>
+
+    <!-- Floating job cards -->
+    <div class="hero-visual">
+      <div class="float-card">
+        <div class="float-card-company">Tech Innovators</div>
+        <div class="float-card-title">Senior Software Developer</div>
+        <div class="float-card-tags">
+          <span class="tag accent">Full-Time</span>
+          <span class="tag">Bangalore</span>
+          <span class="tag">₹8L/yr</span>
+        </div>
+      </div>
+      <div class="float-card">
+        <div class="float-card-company">Creative Minds</div>
+        <div class="float-card-title">UI/UX Designer</div>
+        <div class="float-card-tags">
+          <span class="tag accent">Remote</span>
+          <span class="tag">₹5.5L/yr</span>
+        </div>
+      </div>
+      <div class="float-card">
+        <div class="float-card-company">Data Insights</div>
+        <div class="float-card-title">Data Analyst</div>
+        <div class="float-card-tags">
+          <span class="tag accent">Full-Time</span>
+          <span class="tag">Delhi</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Jobs -->
+  <div class="section">
+    <div class="section-label">Opportunities</div>
+    <h2 class="section-title">Featured Openings</h2>
+    <p class="section-sub">Hand-picked from top companies hiring right now</p>
+    <div class="jobs-grid">
+      <div class="job-card" onclick="navigate('application-form')">
+        <div class="job-card-header">
+          <div class="job-company-logo" style="background:linear-gradient(135deg,#6c63ff,#a855f7)">TI</div>
+          <span class="job-type-badge">Full-Time</span>
+        </div>
+        <h3>Software Developer</h3>
+        <div class="company-name">Tech Innovators · Bangalore</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">AWS</span>
+        </div>
+        <div class="job-card-footer">
+          <span class="salary">₹8,00,000/yr</span>
+          <span class="location">📍 Bangalore</span>
+        </div>
+      </div>
+      <div class="job-card" onclick="navigate('application-form')">
+        <div class="job-card-header">
+          <div class="job-company-logo" style="background:linear-gradient(135deg,#ff6584,#f59e0b)">CM</div>
+          <span class="job-type-badge">Full-Time</span>
+        </div>
+        <h3>UI/UX Designer</h3>
+        <div class="company-name">Creative Minds · Remote</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="tag">Figma</span><span class="tag">Prototyping</span>
+        </div>
+        <div class="job-card-footer">
+          <span class="salary">₹5,50,000/yr</span>
+          <span class="location">🌐 Remote</span>
+        </div>
+      </div>
+      <div class="job-card" onclick="navigate('application-form')">
+        <div class="job-card-header">
+          <div class="job-company-logo" style="background:linear-gradient(135deg,#43e97b,#0ea5e9)">DI</div>
+          <span class="job-type-badge">Full-Time</span>
+        </div>
+        <h3>Data Analyst</h3>
+        <div class="company-name">Data Insights Pvt Ltd · Delhi</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">PowerBI</span>
+        </div>
+        <div class="job-card-footer">
+          <span class="salary">₹7,50,000/yr</span>
+          <span class="location">📍 Delhi</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Post a Job -->
+  <div class="post-job-section">
+    <div class="section-label">Employers</div>
+    <h2 class="section-title" style="margin-bottom:8px">Post a Job Opening</h2>
+    <p style="color:var(--muted);margin-bottom:36px;font-size:0.95rem">Reach thousands of qualified candidates instantly</p>
+    <form id="postJobForm" onsubmit="handlePostJob(event)">
+      <div class="form-grid">
+        <div class="input-wrap">
+          <label>Job Title</label>
+          <input type="text" class="input-field" id="postTitle" placeholder="e.g. Frontend Developer" required>
+        </div>
+        <div class="input-wrap">
+          <label>Company Name</label>
+          <input type="text" class="input-field" id="postCompany" placeholder="e.g. Acme Corp" required>
+        </div>
+        <div class="input-wrap full">
+          <label>Job Description</label>
+          <textarea class="input-field" id="postDesc" placeholder="Describe the role, responsibilities and requirements..." required></textarea>
+        </div>
+        <div class="input-wrap full" style="text-align:right">
+          <button type="submit" class="btn-primary">Post Job →</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <footer class="footer">Made with <span>♥</span> by Ronit Guleria &amp; Ankit Balouria &nbsp;|&nbsp; © 2025 JobSeeker. All rights reserved.</footer>
+</div>
+
+<!-- ============================================================
+     JOBS PAGE
+     ============================================================ -->
+<div class="page" id="page-jobs">
+  <div class="jobs-hero">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="section-label">Browse</div>
+      <h1 style="font-size:2.4rem;font-weight:800;letter-spacing:-1px;margin-bottom:8px">Join Leading Companies Hiring Now</h1>
+      <p style="color:var(--muted);font-size:1rem">Browse verified listings from top employers — apply with one click</p>
+      <div class="search-bar">
+        <input type="text" class="input-field" id="jobSearch" placeholder="Search by role, company or location..." oninput="filterJobs()">
+        <button class="btn-primary" onclick="filterJobs()">Search</button>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:0 auto;padding:40px 40px 80px">
+    <div class="jobs-table-wrap">
+      <table id="jobsTable">
+        <thead>
+          <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Location</th>
+            <th>Salary</th>
+            <th>Type</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="jobsTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+  <footer class="footer">Made with <span>♥</span> by Ronit Guleria &amp; Ankit Balouria &nbsp;|&nbsp; © 2025 JobSeeker. All rights reserved.</footer>
+</div>
+
+<!-- ============================================================
+     APPLICATION FORM PAGE
+     ============================================================ -->
+<div class="page" id="page-application-form">
+  <div class="app-form-wrap">
+    <div class="app-form-card">
+      <h2>Application Form</h2>
+      <p class="subtitle">Fill in your details to apply. We'll get back to you shortly.</p>
+      <form id="appForm" action="https://script.google.com/macros/s/AKfycbxc19D9r7CvQLIIE_NPzwxrJEoen-NRSIxjP-M-FfSaTuFHlNxkX5yd6Ka5eUROjZzH/exec" method="post" name="contact-form">
+        <div class="form-grid">
+          <div class="input-wrap full">
+            <label>Full Name</label>
+            <input type="text" name="name" class="input-field" placeholder="Your full name" required>
+          </div>
+          <div class="input-wrap">
+            <label>Email</label>
+            <input type="email" name="email" class="input-field" placeholder="you@example.com" required>
+          </div>
+          <div class="input-wrap">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" class="input-field" placeholder="10-digit number" pattern="\d{10}" maxlength="10" required>
+          </div>
+          <div class="input-wrap">
+            <label>Date of Birth</label>
+            <input type="date" name="DOB" class="input-field" required>
+          </div>
+          <div class="input-wrap">
+            <label>Gender</label>
+            <div class="radio-group" style="margin-top:8px">
+              <label class="radio-label"><input type="radio" name="gender" value="male"> Male</label>
+              <label class="radio-label"><input type="radio" name="gender" value="female"> Female</label>
+              <label class="radio-label"><input type="radio" name="gender" value="other"> Other</label>
+            </div>
+          </div>
+          <div class="input-wrap full">
+            <label>Select Job Role</label>
+            <select name="job" class="input-field">
+              <option value="developer">Software Developer</option>
+              <option value="ui/ux">UI/UX Designer</option>
+              <option value="marketing">Digital Marketing Specialist</option>
+              <option value="data analyst">Data Analyst</option>
+              <option value="customer support">Customer Support Executive</option>
+              <option value="content writer">Content Writer</option>
+              <option value="sales">Sales Executive</option>
+              <option value="graphic designer">Graphic Designer</option>
+              <option value="network">Network Engineer</option>
+              <option value="hr">HR Manager</option>
+            </select>
+          </div>
+          <div class="input-wrap full">
+            <label>Address</label>
+            <textarea name="address" class="input-field" placeholder="Your full address"></textarea>
+          </div>
+          <div class="input-wrap full">
+            <label>Upload Resume</label>
+            <div class="file-upload" id="fileUploadArea">
+              <input type="file" id="resumeFile" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx" onchange="handleFileUpload(this)">
+              <div class="file-upload-text">
+                <div style="font-size:1.8rem;margin-bottom:8px">📄</div>
+                <strong>Click to upload</strong> or drag and drop<br>
+                <span style="font-size:0.78rem">PDF, DOC, DOCX, JPG, PNG</span>
+              </div>
+              <img id="resumePreview" class="preview-img" alt="Preview">
+            </div>
+          </div>
+          <div class="input-wrap full" style="text-align:right">
+            <button type="submit" class="btn-primary">Submit Application →</button>
+          </div>
+        </div>
+      </form>
+      <p class="policy-text">By clicking Submit, you agree to our <a href="#">User Agreement</a> and <a href="#">Privacy Policy</a>.</p>
+    </div>
+  </div>
+  <footer class="footer">Made with <span>♥</span> by Ronit Guleria &amp; Ankit Balouria &nbsp;|&nbsp; © 2025 JobSeeker. All rights reserved.</footer>
+</div>
+
+<!-- ============================================================
+     PROFILE PAGE
+     ============================================================ -->
+<div class="page" id="page-profile">
+  <div class="profile-page">
+    <div class="profile-header">
+      <img id="profileAvatar" src="/logo.png" alt="Avatar" class="profile-avatar">
+      <div>
+        <h1 class="profile-name" id="profileName">—</h1>
+        <p class="profile-email" id="profileEmail">—</p>
+        <div class="profile-actions-row">
+          <button class="btn-primary" onclick="navigate('edit-profile')">Edit Profile</button>
+          <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+      </div>
+    </div>
+    <div class="profile-grid">
+      <div class="profile-info-card">
+        <div class="card-label">Phone</div>
+        <div class="card-value" id="profilePhone">—</div>
+      </div>
+      <div class="profile-info-card">
+        <div class="card-label">Address</div>
+        <div class="card-value" id="profileAddress">—</div>
+      </div>
+      <div class="profile-info-card" style="grid-column:1/-1">
+        <div class="card-label">Skills</div>
+        <div class="skills-list" id="profileSkills"></div>
+      </div>
+      <div class="profile-info-card" style="grid-column:1/-1">
+        <div class="card-label">Experience</div>
+        <div class="card-value" id="profileExperience">—</div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">Made with <span>♥</span> by Ronit Guleria &amp; Ankit Balouria &nbsp;|&nbsp; © 2025 JobSeeker. All rights reserved.</footer>
+</div>
+
+<!-- ============================================================
+     EDIT PROFILE PAGE
+     ============================================================ -->
+<div class="page" id="page-edit-profile">
+  <div class="edit-profile-wrap">
+    <div class="edit-profile-card">
+      <h2>Edit Profile</h2>
+      <p class="subtitle">Update your information below</p>
+      <form class="edit-form" onsubmit="saveProfile(event)">
+        <div class="edit-form-row">
+          <div class="input-wrap">
+            <label>Name</label>
+            <input type="text" id="editName" class="input-field" placeholder="Your name" required>
+          </div>
+          <div class="input-wrap">
+            <label>Email</label>
+            <input type="email" id="editEmail" class="input-field" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="edit-form-row">
+          <div class="input-wrap">
+            <label>Phone</label>
+            <input type="tel" id="editPhone" class="input-field" placeholder="Phone number">
+          </div>
+          <div class="input-wrap">
+            <label>Address</label>
+            <input type="text" id="editAddress" class="input-field" placeholder="Your address">
+          </div>
+        </div>
+        <div class="input-wrap">
+          <label>Skills (comma-separated)</label>
+          <input type="text" id="editSkills" class="input-field" placeholder="e.g. JavaScript, React, Python">
+        </div>
+        <div class="input-wrap">
+          <label>Experience</label>
+          <textarea id="editExperience" class="input-field" placeholder="Describe your experience"></textarea>
+        </div>
+        <div style="display:flex;gap:12px;justify-content:flex-end">
+          <button type="button" class="btn-outline" onclick="navigate('profile')">Cancel</button>
+          <button type="submit" class="btn-primary">Save Changes →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <footer class="footer">Made with <span>♥</span> by Ronit Guleria &amp; Ankit Balouria &nbsp;|&nbsp; © 2025 JobSeeker. All rights reserved.</footer>
+</div>
+
+<!-- ============================================================
+     ABOUT PAGE
+     ============================================================ -->
+<div class="page" id="page-about">
+  <div class="about-hero-sec">
+    <span class="about-eyebrow">Our Story</span>
+    <h1>About <em style="background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal">JobSeeker</em></h1>
+    <p>Your trusted platform for connecting job seekers with top employers across India.</p>
+  </div>
+  <div class="about-content-wrap">
+    <div style="max-width:680px;margin:0 auto;text-align:center">
+      <h2 style="font-size:1.8rem;font-weight:800;margin-bottom:16px;letter-spacing:-0.5px">Who We Are</h2>
+      <p style="color:var(--muted);line-height:1.8;font-size:0.98rem">At JobSeeker, we are dedicated to bridging the gap between job seekers and employers. Our platform is designed to make the job search process seamless, efficient, and rewarding for everyone involved.</p>
+    </div>
+    <div class="about-features-grid">
+      <div class="about-feature-card">
+        <div class="feature-icon" style="background:rgba(108,99,255,0.15)">🔍</div>
+        <h3>Easy Job Search</h3>
+        <p>Find jobs that match your skills and preferences with our advanced search and filtering tools.</p>
+      </div>
+      <div class="about-feature-card">
+        <div class="feature-icon" style="background:rgba(255,101,132,0.15)">🏢</div>
+        <h3>Top Employers</h3>
+        <p>Connect with leading companies and explore exciting career opportunities across India.</p>
+      </div>
+      <div class="about-feature-card">
+        <div class="feature-icon" style="background:rgba(67,233,123,0.15)">📈</div>
+        <h3>Professional Growth</h3>
+        <p>Build your profile, showcase your skills, and grow your career with resources and guidance.</p>
+      </div>
+    </div>
+    <div class="mission-block">
+      <h2>Our Mission</h2>
+      <p>To empower job seekers and employers by providing a platform that simplifies the hiring process and fosters meaningful professional connections across India.</p>
+    </div>
+  </div>
+  <footer class="footer">Made with <span>♥</span> by Ronit Guleria &amp; Ankit Balouria &nbsp;|&nbsp; © 2025 JobSeeker. All rights reserved.</footer>
+</div>
+
+<!-- ============================================================
+     CONTACT PAGE
+     ============================================================ -->
+<div class="page" id="page-contact">
+  <div class="contact-wrap">
+    <div class="section-label" style="margin-bottom:12px">Get in Touch</div>
+    <h2 style="font-size:2.2rem;font-weight:800;letter-spacing:-0.5px;margin-bottom:8px">Contact Us</h2>
+    <p style="color:var(--muted);margin-bottom:40px">Have a question? We'd love to hear from you.</p>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-card" style="margin-bottom:20px">
+          <h3>Ronit Guleria</h3>
+          <div class="contact-detail">
+            <span class="contact-icon">✉️</span>
+            <div class="contact-detail-text">
+              <strong>Email</strong><span>ronitgule@gmail.com</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-icon">📞</span>
+            <div class="contact-detail-text">
+              <strong>Phone</strong><span>+91 9876543210</span>
+            </div>
+          </div>
+        </div>
+        <div class="contact-info-card">
+          <h3>Ankit Balouria</h3>
+          <div class="contact-detail">
+            <span class="contact-icon">✉️</span>
+            <div class="contact-detail-text">
+              <strong>Email</strong><span>ankitbalouria3@gmail.com</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <span class="contact-icon">📞</span>
+            <div class="contact-detail-text">
+              <strong>Phone</strong><span>+91 6230553026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-card">
+        <h3>Send a Message</h3>
+        <form id="contactForm" action="https://script.google.com/macros/s/AKfycbyzIPAB1cTBRhqqeTnQry23iOPjuPYyBbNfF-r7sEZrNbCUQw_bAlh07BQefbY-MCoz/exec" method="post" name="contact-form" onsubmit="handleContact(event)">
+          <div class="input-wrap" style="margin-bottom:14px">
+            <label>Your Name</label>
+            <input type="text" name="your-name" class="input-field" placeholder="Full name" required>
+          </div>
+          <div class="input-wrap" style="margin-bottom:14px">
+            <label>Phone</label>
+            <input type="text" name="your-number" class="input-field" placeholder="Phone number">
+          </div>
+          <div class="input-wrap" style="margin-bottom:14px">
+            <label>Email</label>
+            <input type="email" name="your-email" class="input-field" placeholder="you@example.com" required>
+          </div>
+          <div class="input-wrap" style="margin-bottom:20px">
+            <label>Message</label>
+            <textarea name="message" class="input-field" rows="4" placeholder="Your message..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">Made with <span>♥</span> by Ronit Guleria &amp; Ankit Balouria &nbsp;|&nbsp; © 2025 JobSeeker. All rights reserved.</footer>
+</div>
+
+<!-- ============================================================
+     DEVS PAGE
+     ============================================================ -->
+<div class="page" id="page-devs">
+  <div class="devs-wrap">
+    <div class="section-label" style="margin-bottom:12px">The Team</div>
+    <h2 style="font-size:2.5rem;font-weight:800;letter-spacing:-1px">Meet the Developers</h2>
+    <p style="color:var(--muted);margin-top:12px">This platform was built with passion and dedication by two developers.</p>
+    <div class="devs-grid">
+      <div class="dev-card">
+        <img src="./ronit.jpg" alt="Ronit Guleria" class="dev-avatar"
+             onerror="this.style.background='linear-gradient(135deg,#6c63ff,#a855f7)';this.removeAttribute('src')">
+        <h3>Ronit Guleria</h3>
+        <div class="dev-role">Backend &amp; Lead Developer</div>
+        <p>Ronit built the backend functionality, ensuring smooth data handling, robust integrations, and leading the development process to deliver a reliable platform.</p>
+      </div>
+      <div class="dev-card">
+        <img src="./ankit.jpg" alt="Ankit Balouria" class="dev-avatar"
+             onerror="this.style.background='linear-gradient(135deg,#ff6584,#f59e0b)';this.removeAttribute('src')">
+        <h3>Ankit Balouria</h3>
+        <div class="dev-role">Frontend Developer &amp; Designer</div>
+        <p>Ankit focused on designing the user interface and frontend experience, ensuring the website is visually appealing, accessible, and user-friendly.</p>
+      </div>
+    </div>
+    <p style="color:var(--muted);margin-top:48px;font-size:0.9rem">We collaborated to create this platform to help job seekers connect with top employers and make the hiring process seamless for everyone.</p>
+  </div>
+  <footer class="footer">Made with <span>♥</span> by Ronit Guleria &amp; Ankit Balouria &nbsp;|&nbsp; © 2025 JobSeeker. All rights reserved.</footer>
+</div>
+
+<!-- ============================================================
+     DMCA PAGE
+     ============================================================ -->
+<div class="page" id="page-dmca">
+  <div class="dmca-wrap">
+    <div class="section-label" style="margin-bottom:12px">Legal</div>
+    <h2>DMCA Policy</h2>
+    <p class="dmca-sub">We take copyright seriously and follow the Digital Millennium Copyright Act.</p>
+    <div class="dmca-card">
+      <h3>About DMCA</h3>
+      <p style="color:var(--muted);font-size:0.9rem;line-height:1.7">If you believe that any content on this site violates copyright laws, please contact us with the following details and we will take appropriate action.</p>
+    </div>
+    <div class="dmca-card">
+      <h3>How to File a DMCA Complaint</h3>
+      <ul>
+        <li>Provide a description of the copyrighted work you believe has been infringed.</li>
+        <li>Provide the exact URL of the infringing content on our platform.</li>
+        <li>Include your full name and contact details.</li>
+        <li>Submit your complaint via email: <strong style="color:var(--accent)">dmca@jobseeker.com</strong></li>
+      </ul>
+    </div>
+  </div>
+  <footer class="footer">Made with <span>♥</span> by Ronit Guleria &amp; Ankit Balouria &nbsp;|&nbsp; © 2025 JobSeeker. All rights reserved.</footer>
+</div>
+
+<!-- ============================================================
+     LOGIN PAGE
+     ============================================================ -->
+<div class="page" id="page-login">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h2>Welcome back</h2>
+      <p class="auth-sub">Sign in to your JobSeeker account</p>
+      <div id="loginError" class="auth-error"></div>
+      <form class="auth-form" onsubmit="handleLogin(event)">
+        <div class="input-wrap">
+          <label>Email</label>
+          <input type="email" id="loginEmail" class="input-field" placeholder="you@example.com" required>
+        </div>
+        <div class="input-wrap">
+          <label>Password</label>
+          <input type="password" id="loginPassword" class="input-field" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center">Sign In →</button>
+      </form>
+      <p class="auth-footer">Don't have an account? <a onclick="navigate('signup')">Create one</a></p>
+    </div>
+  </div>
+  <footer class="footer">Made with <span>♥</span> by Ronit Guleria &amp; Ankit Balouria &nbsp;|&nbsp; © 2025 JobSeeker. All rights reserved.</footer>
+</div>
+
+<!-- ============================================================
+     SIGNUP PAGE
+     ============================================================ -->
+<div class="page" id="page-signup">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h2>Create account</h2>
+      <p class="auth-sub">Join thousands of job seekers on JobSeeker</p>
+      <form class="auth-form" onsubmit="handleSignup(event)">
+        <div class="input-wrap">
+          <label>Full Name</label>
+          <input type="text" id="signupName" class="input-field" placeholder="Your full name" required>
+        </div>
+        <div class="input-wrap">
+          <label>Email</label>
+          <input type="email" id="signupEmail" class="input-field" placeholder="you@example.com" required>
+        </div>
+        <div class="input-wrap">
+          <label>Password</label>
+          <input type="password" id="signupPassword" class="input-field" placeholder="Create a password" required>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center">Create Account →</button>
+      </form>
+      <p class="auth-footer">Already have an account? <a onclick="navigate('login')">Sign in</a></p>
+    </div>
+  </div>
+  <footer class="footer">Made with <span>♥</span> by Ronit Guleria &amp; Ankit Balouria &nbsp;|&nbsp; © 2025 JobSeeker. All rights reserved.</footer>
+</div>
+
+<!-- External JS — must come after all HTML -->
+<script src="script.js"></script>
+    <script>
+        // Handle Contact Form Submission
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form from refreshing the page
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            // Simulate sending data to a backend or email
+            console.log("Contact Form Submitted:");
+            console.log("Name:", name);
+            console.log("Email:", email);
+            console.log("Message:", message);
+
+            // Display a success message
+            alert("Thank you for contacting us! We will get back to you soon.");
+            
+            // Optionally, clear the form fields
+            document.getElementById("contactForm").reset();
+        });
+    </script>
+ <script src="sheet.js"></script>
+    <script>
+        let url = "https://script.google.com/macros/s/AKfycbxc19D9r7CvQLIIE_NPzwxrJEoen-NRSIxjP-M-FfSaTuFHlNxkX5yd6Ka5eUROjZzH/exec";
+        let file = document.querySelector("#file");
+        let img = document.querySelector("img");
+        file.addEventListener('change', () => {
+          let fr = new FileReader();
+          fr.addEventListener('loadend', () => {
+            let res = fr.result;
+            img.src = res;
+            let spt = res.split("base64,")[1];
+            // console.log(spt);
+            let obj = {
+              base64: spt,
+              type: file.files[0].type,
+              name: file.files[0].name
+            }
+            fetch(url, {
+              method: "POST",
+              body: JSON.stringify(obj)
+            })
+              .then(r => r.text())
+              .then(data => console.log(data))
+          })
+          fr.readAsDataURL(file.files[0])
+        })
+      </script>
+</body>
+</html>
